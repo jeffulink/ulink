@@ -15,10 +15,30 @@ class ProductsController < ApplicationController
     end
 
     def create
-        product = params[:product]
-        Product.create(name: product[:name], category: product[:category])
-        redirect_to '/products'
+        Product.create(product_params)
+
+        redirect_to products_path
     end
+
+    def destroy
+    @product.destroy
+    respond_to do |format|
+      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+    def update
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to @product, notice: 'Products was successfully updated.' }
+        format.json { render :show, status: :ok, location: @Product }
+      else
+        format.html { render :edit }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
     private
     # Use callbacks to share common setup or constraints between actions.
@@ -28,6 +48,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :category)
+      params.require(:product).permit(:name,:category, :category_id)
     end
 end

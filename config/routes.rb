@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :prices
   resources :costs
+  resources :quotations
 
 
 

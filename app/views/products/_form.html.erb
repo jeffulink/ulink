@@ -1,16 +1,19 @@
-<%= form_for(@new) do |f| %>
+<%= form_for(product) do |f| %>
 
     <div class="field">
-        <%= f.label :name%>
-        <%= f.text_field :name%>
-    </div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-    <div class="field">
-        <%= f.label :Email%>
-        <%= f.text_field :email%>
-    </div>
+  <!--<div class="field">
+    <%#= f.label :category %>
+    <%#= f.text_field :category %>
+  </div>-->
+  <%= f.label :category %>
+  <%= f.collection_select(:category_id, Category.all, :id, :category) %>
 
-    <div class="actions">
-        <%= f.submit %>
-    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
 <% end %>
