@@ -18,7 +18,12 @@ class UsersController < ApplicationController
   def create
         user = params[:user]
         User.create(name: user[:name] , email: user[:email])
-  redirect_to users_path
+        # if @user.save
+        #   flash[:success] = "已經成功下訂"
+        #   redirect_to users_path
+        # else
+        #   flash[:danger] ="錯誤輸入"
+          
   end
 
   def destroy

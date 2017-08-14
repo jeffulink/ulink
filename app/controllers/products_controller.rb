@@ -5,6 +5,8 @@ class ProductsController < ApplicationController
     end
 
     def show
+      @comment = Comment.new
+      @comments = @product.comments
     end
 
     def edit
@@ -14,10 +16,21 @@ class ProductsController < ApplicationController
         @product = Product.new
     end
 
-    def create
-        Product.create(product_params)
+    def vote
 
-        redirect_to products_path
+    end
+
+    def create
+        @product = Product.create(product_params)
+        #@product.user = current_user
+        binding.pry
+        if @product.save
+          flash[:success] = "已經成功新增"
+          redirect_to products_path
+        else
+          flash[:danger] ="錯誤輸入"
+          redirect_to products_path
+        end
     end
 
     def destroy
@@ -48,6 +61,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name,:category, :category_id)
+      params.require(:product).permit(:name, :logo, :category_id)
     end
 end

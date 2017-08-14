@@ -11,7 +11,13 @@
   <body>
     <%= render "common/navigation" %>
 
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+
     <%= yield %>
     <%= render "common/footer" %>
+
+    
   </body>
 </html>

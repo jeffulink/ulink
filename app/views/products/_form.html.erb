@@ -5,13 +5,13 @@
     <%= f.text_field :name %>
   </div>
 
-  <!--<div class="field">
-    <%#= f.label :category %>
-    <%#= f.text_field :category %>
-  </div>-->
+<div class="form-group"><%= f.file_field :logo %></div>
+<div class="form-group"><%= f.file_field :logo %></div>
+
+
   <%= f.label :category %>
   <%= f.collection_select(:category_id, Category.all, :id, :category) %>
-
+  
   <div class="actions">
     <%= f.submit %>
   </div>

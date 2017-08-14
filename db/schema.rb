@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810225126) do
+ActiveRecord::Schema.define(version: 20170813045618) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "doctor_id"
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 20170810225126) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -78,12 +91,16 @@ ActiveRecord::Schema.define(version: 20170810225126) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string  "name"
-    t.integer "price"
-    t.integer "set"
-    t.string  "unit"
-    t.string  "note"
-    t.integer "category_id"
+    t.string   "name"
+    t.integer  "price"
+    t.integer  "set"
+    t.string   "unit"
+    t.string   "note"
+    t.integer  "category_id"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   create_table "quotations", force: :cascade do |t|
@@ -101,6 +118,15 @@ ActiveRecord::Schema.define(version: 20170810225126) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "voteable_type"
+    t.integer  "voteable_id"
+    t.boolean  "vote"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
