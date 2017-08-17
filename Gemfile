@@ -36,7 +36,7 @@ gem 'bootstrap-sass'
 gem 'kaminari'
 gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 5.0.0"
-gem 'carrierwave'
+#gem 'carrierwave'
 gem 'rmagick'
 # gem 'rwd-kickstart', '~> 1.0'
 # Use Capistrano for deployment
